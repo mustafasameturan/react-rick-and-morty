@@ -28,11 +28,11 @@ function CardsSection() {
     } else {
         return (
             <div id="card_container">
-                <ul className="mt-5 mb-20 flex justify-center gap-x-5 gap-y-10 flex-wrap mx-auto cursor-pointer w-fit">
-                    {users.map(user => (
-                        <Card user={user} />
+                <div className="mt-5 mb-20 flex justify-center gap-x-5 gap-y-10 flex-wrap mx-auto cursor-pointer w-fit">
+                    {users.map((user, index) => (
+                        <Card key={index} user={user} />
                     ))}
-                </ul>
+                </div>
             </div>
         )
     }

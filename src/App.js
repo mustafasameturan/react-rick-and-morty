@@ -1,4 +1,4 @@
-import CardsSection from "./getCards";
+import CardsSection from "./CardsSection";
 
 function App() {
   return (

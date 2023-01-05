@@ -1,19 +1,22 @@
-import selectForCompare  from "../selectForCompare";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import classNames from "classnames";
+import SelectForCompare from "../selectForCompare";
 
+let characterIdArray = [];
 function Card({ user }) {
     const [active, setActive] = useState(true);
+    const cardRef = useRef()
 
-    const handleClick = (activeElement) => {
-        
+    const handleClick = () => {
         setActive(active => !active)
-        selectForCompare(activeElement)
-        console.log(this);
+        active ? characterIdArray.push(cardRef.current.id) : characterIdArray.splice(characterIdArray.indexOf(cardRef.current.id), 1);
+        console.log(characterIdArray);
+
+        SelectForCompare({characterIdArray})
     }
 
     return (
-        <div key={user.id} id={user.id} className="relative group">
+        <div ref={cardRef} id={user.id} className="relative group">
             <div
                 className="bg-white border border-primary rounded-[40px] w-[350px] h-[400px] text-base-text relative z-10">
                 <div className="m-3 flex justify-center">
@@ -40,7 +43,7 @@ function Card({ user }) {
             <div
                 className="bg-primary border border-primary rounded-[40px] w-[350px] h-[400px] absolute top-[10px] left-0 z-0">
             </div>
-            <div  id={"overlay_" + user.id} className={classNames({
+            <div id={"overlay_" + user.id} className={classNames({
                 "absolute inset-0 z-20 rounded-[40px]": true,
                 "group-hover:bg-[#48cfad]/60": active,
                 "bg-[#48cfad]/60": !active,

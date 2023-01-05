@@ -28,7 +28,7 @@ function CardsSection() {
     } else {
         return (
             <div id="card_container">
-                <div className="mt-5 mb-20 flex justify-center gap-x-5 gap-y-10 flex-wrap mx-auto cursor-pointer w-fit">
+                <div className="mt-5 mb-20 flex justify-center gap-x-5 gap-y-10 flex-wrap mx-auto w-fit">
                     {users.map((user, index) => (
                         <Card key={index} user={user} />
                     ))}

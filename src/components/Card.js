@@ -1,19 +1,25 @@
 import { useState, useRef } from "react";
 import classNames from "classnames";
 import SelectForCompare from "../selectForCompare";
+import { useDispatch, useSelector } from "react-redux";
+import { add, del, characterIdArr } from "../stores/character";
 
-let characterIdArray = [];
+//let characterIdArray = [];
 function Card({ user }) {
+    //const characterIdArray = useSelector(characterIdArr)
+    const dispatch = useDispatch()
     const [active, setActive] = useState(true);
     const cardRef = useRef()
 
     const handleClick = () => {
         setActive(active => !active)
-        active ? characterIdArray.push(cardRef.current.id) : characterIdArray.splice(characterIdArray.indexOf(cardRef.current.id), 1);
-        console.log(characterIdArray);
+        active ? dispatch(add(parseInt(cardRef.current.id))) : dispatch(del(cardRef.current.id));
+        //active ? dispatch(add(cardRef.current.id)) : characterIdArray.splice(characterIdArray.indexOf(cardRef.current.id), 1);
+        //console.log(characterIdArray);
 
-        SelectForCompare({characterIdArray})
+        //SelectForCompare({characterIdArray})
     }
+
 
     return (
         <div ref={cardRef} id={user.id} className="relative group">
